@@ -2,7 +2,7 @@
   <div class="container">
     <h1>User info</h1>
     <p>{{ user.first_name }}</p>
-    <h1>Followers</h1>
+    <h1>Followers:</h1>
     <div v-for="follower in user.followers">
       {{ follower }}
     </div>
