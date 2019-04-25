@@ -22,6 +22,10 @@
           <label>Password confirmation:</label>
           <input type="password" class="form-control" v-model="passwordConfirmation" />
         </div>
+        <div class="form-group">
+          <label>Date of Birth:</label>
+          <input type="text" class="form-control" v-model="dob" />
+        </div>
         <input type="submit" class="btn btn-primary" value="Submit" />
       </form>
     </div>
@@ -38,6 +42,7 @@ export default {
       email: "",
       password: "",
       passwordConfirmation: "",
+      dob: "",
       errors: []
     };
   },
@@ -47,7 +52,8 @@ export default {
         name: this.name,
         email: this.email,
         password: this.password,
-        password_confirmation: this.passwordConfirmation
+        password_confirmation: this.passwordConfirmation,
+        date_of_birth: this.dob
       };
       axios
         .post("/api/users", params)

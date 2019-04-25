@@ -1,8 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Index from "./views/Index.vue";
 import Signup from "./views/Signup.vue";
 import Login from "./views/Login.vue";
+import Logout from "./views/Logout.vue";
+import Index from "./views/Index.vue";
 
 Vue.use(Router);
 
@@ -26,6 +27,12 @@ export default new Router({
       path: "/Login",
       name: "Login",
       component: Login
+    },
+
+    {
+      path: "/Logout",
+      name: "Logout",
+      component: Logout
     }
   ]
 });
