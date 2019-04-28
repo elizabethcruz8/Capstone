@@ -4,6 +4,7 @@ import Signup from "./views/Signup.vue";
 import Login from "./views/Login.vue";
 import Logout from "./views/Logout.vue";
 import Index from "./views/Index.vue";
+import HobbiesShow from "./views/HobbiesShow.vue";
 
 Vue.use(Router);
 
@@ -33,6 +34,12 @@ export default new Router({
       path: "/Logout",
       name: "Logout",
       component: Logout
+    },
+
+    {
+      path: "/hobbies/:id",
+      name: "HobbiesShow",
+      component: HobbiesShow
     }
   ]
 });
