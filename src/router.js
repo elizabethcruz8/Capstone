@@ -5,6 +5,7 @@ import Login from "./views/Login.vue";
 import Logout from "./views/Logout.vue";
 import Index from "./views/Index.vue";
 import HobbiesShow from "./views/HobbiesShow.vue";
+import UserShow from "./views/UserShow.vue";
 
 Vue.use(Router);
 
@@ -40,6 +41,12 @@ export default new Router({
       path: "/hobbies/:id",
       name: "HobbiesShow",
       component: HobbiesShow
+    },
+
+    {
+      path: "/users/:id",
+      name: "UserShow",
+      component: UserShow
     }
   ]
 });

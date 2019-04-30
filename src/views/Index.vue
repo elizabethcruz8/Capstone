@@ -30,28 +30,28 @@
       </div>
     </div>
 
-    {{ user.posts }}
-
     <h1>
       Followers
     </h1>
     <h4>({{ user.followers.length }} total)</h4>
     <div v-for="follower in user.followers">
       <h2>{{ follower.first_name }} {{ follower.last_name }}</h2>
+      <router-link v-bind:to="`/users/${follower.id}`">View Profile!</router-link>
       <div v-for="post in follower.posts">
         <h4>{{ post.title }}</h4>
         <p>{{ post.text }}</p>
       </div>
     </div>
 
-    <h1>Create a Hobby!</h1>
     <form v-on:submit.prevent="createHobby()">
-      <ul>
-        <li v-for="error in errors">{{ error }}</li>
-      </ul>
-      Name:
-      <input type="text" v-model="newHobbyName" />
-      <input type="submit" value="Create" />
+      <div>
+        <h1>Choose a Hobby!</h1>
+        <select v-model="hobby_id">
+          <option value="" disabled="disabled" selected="selected"> Select Hobby:</option>
+          <option v-for="hobby in hobbies" v-bind:value="hobby.id">{{ hobby.name }}</option>
+        </select>
+        <input type="submit" value="Create" />
+      </div>
     </form>
 
     <h1>My Hobbies</h1>
@@ -77,13 +77,18 @@ export default {
       newPostText: "",
       newPostPhoto: "",
       newPostVideo: "",
-      newHobbyName: ""
+      hobby_id: "",
+      hobbies: [{}]
     };
   },
   created: function() {
     axios.get("/api/users/current_user").then(response => {
       console.log("created", response.data);
       this.user = response.data;
+    });
+    axios.get("/api/hobbies").then(response => {
+      this.hobbies = response.data;
+      console.log(this.hobbies);
     });
   },
   methods: {
@@ -110,13 +115,15 @@ export default {
 
     destroyPost: function(post) {
       axios.delete("/api/posts/" + post.id).then(response => {
+        var index = this.user.posts.indexOf(post);
+        this.user.posts.splice(index, 1);
         this.$router.push("/");
       });
     },
 
     createHobby: function() {
       var params = {
-        name: this.newHobbyName
+        name: this.hobby_id
       };
       axios
         .post("/api/hobbies", params)
