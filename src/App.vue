@@ -6,14 +6,14 @@
     <header class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="index-2.html" class="navbar-brand visible-xs">Progaming</a>
+          <a href="index.html" class="navbar-brand visible-xs">GamerGirls</a>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="index-2.html">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="team.html">Admin team</a></li>
             <li><a href="profile.html">Profile</a></li>
             <li><a href="gallery.html">Gallery</a></li>
@@ -67,8 +67,8 @@
             </li>
           </ul>
           <div class="pull-right navbar-buttons hidden-xs">
-            <a href="signup.html" class="btn btn-primary">Register</a>
-            <a href="signin.html" class="btn btn-inverse">Login</a>
+            <a href="/Signup" class="btn btn-primary">Sign Up</a>
+            <a href="/Login" class="btn btn-inverse">Login</a>
             <a class="navbar-icon show2" id="open-search"><i class="fa fa-search"></i></a>
             <a class="navbar-icon hidden" id="close-search"><i class="fa fa-times"></i></a>
             <div class="hidden" id="navbar-search-form">
@@ -203,7 +203,7 @@
           </div>
           <!-- JUMBOTRON ITEM - END -->
 
-          <!-- JUMBOTRON ITEM - START -->
+          <!-- c ITEM - START -->
           <div class="item">
             <a href="single.html">
               <div class="overlay-wrapper">
