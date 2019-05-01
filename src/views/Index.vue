@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <form v-on:submit.prevent="createHobby()">
+    <form v-on:submit.prevent="createHobbyUser()">
       <div>
         <h1>Choose a Hobby!</h1>
         <select v-model="hobby_id">
@@ -86,7 +86,7 @@ export default {
       console.log("created", response.data);
       this.user = response.data;
     });
-    axios.get("/api/hobbies").then(response => {
+    axios.get("/api/hobbies?new=true").then(response => {
       this.hobbies = response.data;
       console.log(this.hobbies);
     });
@@ -121,15 +121,15 @@ export default {
       });
     },
 
-    createHobby: function() {
+    createHobbyUser: function() {
       var params = {
-        name: this.hobby_id
+        hobby_id: this.hobby_id
       };
       axios
-        .post("/api/hobbies", params)
+        .post("/api/hobbyusers", params)
         .then(response => {
           console.log("Successfully created a hobby!");
-          this.user.hobbies.push(response.data);
+          this.user.hobbies.push(response.data.hobby);
           this.$router.push("/");
         })
         .catch(error => {
