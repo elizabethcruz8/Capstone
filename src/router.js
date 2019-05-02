@@ -4,8 +4,13 @@ import Signup from "./views/Signup.vue";
 import Login from "./views/Login.vue";
 import Logout from "./views/Logout.vue";
 import Index from "./views/Index.vue";
+import Posts from "./views/Posts.vue";
 import HobbiesShow from "./views/HobbiesShow.vue";
 import UserShow from "./views/UserShow.vue";
+import chat from "./views/chat.vue";
+import Chat from "vue-beautiful-chat";
+
+Vue.use(Chat);
 
 Vue.use(Router);
 
@@ -44,9 +49,21 @@ export default new Router({
     },
 
     {
+      path: "/Posts",
+      name: "Posts",
+      component: Posts
+    },
+
+    {
       path: "/users/:id",
       name: "UserShow",
       component: UserShow
+    },
+
+    {
+      path: "/chat",
+      name: "chat",
+      component: chat
     }
   ]
 });

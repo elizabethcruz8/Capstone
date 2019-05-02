@@ -115,9 +115,10 @@ h6 {
 }
 
 .btn-primary {
-	background-color: #F5752A;
+	/*background-color: #F5752A;
 	background-image: linear-gradient(#F5752A,#DB5E14);
-	border-color:#C75918;
+	border-color:#C75918;*/
+	background-color: purple;
 }
 
 .btn-primary:hover {

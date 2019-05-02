@@ -69,6 +69,7 @@
           <div class="pull-right navbar-buttons hidden-xs">
             <a href="/Signup" class="btn btn-primary">Sign Up</a>
             <a href="/Login" class="btn btn-inverse">Login</a>
+            <a href="/Logout" class="btn btn-inverse">Logout</a>
             <a class="navbar-icon show2" id="open-search"><i class="fa fa-search"></i></a>
             <a class="navbar-icon hidden" id="close-search"><i class="fa fa-times"></i></a>
             <div class="hidden" id="navbar-search-form">
@@ -106,7 +107,7 @@
       <div class="header-title">
         <div class="pull-left">
           <h2>
-            <a href="index-2.html"><span class="text-primary">Pro</span>gaming</a>
+            <a href="/"><span class="text-primary">Girl</span>gamers</a>
           </h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
         </div>
@@ -356,6 +357,28 @@
 
 <style>
 body {
-  color: white !important;
+  /*color: white !important;*/
+}
+
+h2 {
+  color: purple !important;
+}
+
+h4 {
+  color: purple !important;
+}
+li {
+  color: crimson !important;
+}
+
+small {
+  color: crimson !important;
+}
+strong {
+  color: purple !important;
+}
+
+button {
+  /*color: purple !important;*/
 }
 </style>
