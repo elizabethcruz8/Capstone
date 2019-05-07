@@ -14,7 +14,6 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
-            <li><a href="team.html">Admin team</a></li>
             <li><a href="profile.html">Profile</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li class="dropdown">
@@ -104,12 +103,12 @@
       TITLE - START 
     =========================== -->
     <div class="container hidden-xs">
+      <img src="/assets/images/GirlGamers.png" class="img-responsive pull-right" alt="GirlGamers" />
       <div class="header-title">
         <div class="pull-left">
           <h2>
             <a href="/"><span class="text-primary">Girl</span>gamers</a>
           </h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
         </div>
       </div>
     </div>
@@ -124,9 +123,9 @@
       <div class="jumbotron">
         <div class="jumbotron-panel">
           <div class="panel panel-primary collapse-horizontal">
-            <a data-toggle="collapse" class="btn btn-primary collapsed" data-target="#toggle-collapse"
+            <!--  <a data-toggle="collapse" class="btn btn-primary collapsed" data-target="#toggle-collapse"
               >Check our Servers <i class="fa fa-caret-down"></i
-            ></a>
+            ></a> -->
             <div class="jumbotron-brands">
               <ul class="brands brands-sm brands-inline brands-circle">
                 <li>
@@ -196,9 +195,8 @@
           <div class="item">
             <a href="single.html">
               <div class="overlay-wrapper">
-                <img src="assets/images/image_001.jpg" class="img-responsive" alt="" />
+                <img src="/assets/images/girl gamer tournament 7.jpeg" class="img-responsive" alt="" />
                 <span class="overlay"></span>
-                <h2>Lorem Ipsum dolor<span>27 March 2014</span></h2>
               </div>
             </a>
           </div>
@@ -208,9 +206,8 @@
           <div class="item">
             <a href="single.html">
               <div class="overlay-wrapper">
-                <img src="assets/images/image_002.jpg" class="img-responsive" alt="" />
+                <img src="/assets/images/girl gamer tournament 1.jpeg" class="img-responsive" alt="" />
                 <span class="overlay"></span>
-                <h2>Lorem Ipsum dolor<span>27 March 2014</span></h2>
               </div>
             </a>
           </div>
@@ -220,9 +217,8 @@
           <div class="item">
             <a href="single.html">
               <div class="overlay-wrapper">
-                <img src="assets/images/image_003.jpg" class="img-responsive" alt="" />
+                <img src="/assets/images/girl gamer tournament 2.jpeg" class="img-responsive" alt="" />
                 <span class="overlay"></span>
-                <h2>Lorem Ipsum dolor<span>27 March 2014</span></h2>
               </div>
             </a>
           </div>
@@ -232,9 +228,8 @@
           <div class="item">
             <a href="single.html">
               <div class="overlay-wrapper">
-                <img src="assets/images/image_004.jpg" class="img-responsive" alt="" />
+                <img src="/assets/images/girl gamer tournament 3.jpeg" class="img-responsive" alt="" />
                 <span class="overlay"></span>
-                <h2>Lorem Ipsum dolor<span>27 March 2014</span></h2>
               </div>
             </a>
           </div>
@@ -244,9 +239,19 @@
           <div class="item">
             <a href="single.html">
               <div class="overlay-wrapper">
-                <img src="assets/images/image_005.jpg" class="img-responsive" alt="" />
+                <img src="/assets/images/girl gamer tournament 4.jpeg" class="img-responsive" alt="" />
                 <span class="overlay"></span>
-                <h2>Lorem Ipsum dolor<span>27 March 2014</span></h2>
+              </div>
+            </a>
+          </div>
+          <!-- JUMBOTRON ITEM - END -->
+
+          <!-- JUMBOTRON ITEM - START -->
+          <div class="item">
+            <a href="single.html">
+              <div class="overlay-wrapper">
+                <img src="/assets/images/girl gamer tournament 6.jpeg" class="img-responsive" alt="" />
+                <span class="overlay"></span>
               </div>
             </a>
           </div>
@@ -257,15 +262,10 @@
     <!-- ==========================
       JUMBOTRON - END 
     =========================== -->
-
-    <div id="nav">
-      <router-link to="/Signup">Signup</router-link> | <router-link to="/Login">Login</router-link> |
-      <router-link to="/logout">Logout</router-link> | <router-link to="/">Index</router-link>
-    </div>
     <!-- ==========================
       CONTENT - START 
     =========================== -->
-    <router-view />
+    <router-view :key="$route.fullPath"></router-view>
     <!-- ==========================
       CONTENT - END 
     =========================== -->
@@ -292,22 +292,22 @@
           <div class="col-sm-6 col-md-4">
             <div class="box footer-tags">
               <h4>Tags</h4>
-              <a href="#"><span class="text-10">Clean</span></a>
-              <a href="#"><span class="text-20">CV</span></a>
-              <a href="#"><span class="text-20">Flat</span></a>
-              <a href="#"><span class="text-14">Freelance</span></a>
-              <a href="#"><span class="text-20">Modern</span></a>
+              <a href="#"><span class="text-12">Clean</span></a>
+              <a href="#"><span class="text-12">CV</span></a>
+              <a href="#"><span class="text-12">Flat</span></a>
+              <a href="#"><span class="text-12">Freelance</span></a>
+              <a href="#"><span class="text-12">Modern</span></a>
               <a href="#"><span class="text-12">One Page</span></a>
-              <a href="#"><span class="text-14">Professional</span></a>
-              <a href="#"><span class="text-14">Responsive</span></a>
-              <a href="#"><span class="text-16">Resume</span></a>
-              <a href="#"><span class="text-20">Business</span></a>
-              <a href="#"><span class="text-16">Corporate</span></a>
-              <a href="#"><span class="text-18">CSS3</span></a>
+              <a href="#"><span class="text-12">Professional</span></a>
+              <a href="#"><span class="text-12">Responsive</span></a>
+              <a href="#"><span class="text-12">Resume</span></a>
+              <a href="#"><span class="text-12">Business</span></a>
+              <a href="#"><span class="text-12">Corporate</span></a>
+              <a href="#"><span class="text-12">CSS3</span></a>
               <a href="#"><span class="text-12">HTML5</span></a>
-              <a href="#"><span class="text-16">Mobile First</span></a>
-              <a href="#"><span class="text-20">Multipurpose</span></a>
-              <a href="#"><span class="text-14">Portfolio</span></a>
+              <a href="#"><span class="text-12">Mobile First</span></a>
+              <a href="#"><span class="text-12">Multipurpose</span></a>
+              <a href="#"><span class="text-12">Portfolio</span></a>
             </div>
           </div>
           <!-- FOOTER BOX - END -->
@@ -352,14 +352,27 @@
     <!-- ==========================
       FOOTER - END 
     =========================== -->
+
+    <beautiful-chat
+      :participants="participants"
+      :titleImageUrl="titleImageUrl"
+      :onMessageWasSent="onMessageWasSent"
+      :messageList="messageList"
+      :newMessagesCount="newMessagesCount"
+      :isOpen="isChatOpen"
+      :close="closeChat"
+      :open="openChat"
+      :showEmoji="true"
+      :showFile="true"
+      :showTypingIndicator="showTypingIndicator"
+      :colors="colors"
+      :alwaysScrollToBottom="alwaysScrollToBottom"
+      :messageStyling="messageStyling"
+    />
   </div>
 </template>
 
 <style>
-body {
-  /*color: white !important;*/
-}
-
 h2 {
   color: purple !important;
 }
@@ -382,3 +395,122 @@ button {
   /*color: purple !important;*/
 }
 </style>
+
+<script>
+import axios from "axios";
+import Chat from "vue-beautiful-chat";
+import ActionCable from "actioncable";
+
+export default {
+  name: "app",
+  data() {
+    return {
+      participants: [
+        {
+          id: "user1",
+          name: "Matteo",
+          imageUrl: "https://avatars3.githubusercontent.com/u/1915989?s=230&v=4"
+        },
+        {
+          id: "user2",
+          name: "Support",
+          imageUrl: "https://avatars3.githubusercontent.com/u/37018832?s=200&v=4"
+        }
+      ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
+      titleImageUrl: "https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png",
+      messageList: [
+        { type: "text", author: `me`, data: { text: `Say yes!` } },
+        { type: "text", author: `user1`, data: { text: `No.` } }
+      ], // the list of the messages to show, can be paginated and adjusted dynamically
+      newMessagesCount: 0,
+      isChatOpen: false, // to determine whether the chat window should be open or closed
+      showTypingIndicator: "", // when set to a value matching the participant.id it shows the typing indicator for the specific user
+      colors: {
+        header: {
+          bg: "#4e8cff",
+          text: "#ffffff"
+        },
+        launcher: {
+          bg: "#4e8cff"
+        },
+        messageList: {
+          bg: "#ffffff"
+        },
+        sentMessage: {
+          bg: "#4e8cff",
+          text: "#ffffff"
+        },
+        receivedMessage: {
+          bg: "#eaeaea",
+          text: "#222222"
+        },
+        userInput: {
+          bg: "#f4f7f9",
+          text: "#565867"
+        }
+      }, // specifies the color scheme for the component
+      alwaysScrollToBottom: false, // when set to true always scrolls the chat to the bottom when new events are in (new message, user starts typing...)
+      messageStyling: true // enables *bold* /emph/ _underline_ and such (more info at github.com/mattezza/msgdown)
+    };
+  },
+  created: function() {
+    axios.get("/api/messages").then(response => {
+      console.log("MESSAGES", response.data);
+      this.participants = response.data.participants;
+      this.messageList = response.data.messages;
+    });
+
+    var cable = ActionCable.createConsumer("ws://localhost:3000/cable");
+    cable.subscriptions.create("MessagesChannel", {
+      connected: () => {
+        // Called when the subscription is ready for use on the server
+        console.log("Connected to MessagesChannel");
+      },
+      disconnected: () => {
+        // Called when the subscription has been terminated by the server
+      },
+      received: data => {
+        // Called when there's incoming data on the websocket for this channel
+        console.log("Data from MessagesChannel:", data);
+        // this.messages.unshift(data); // update the messages in real time
+      }
+    });
+  },
+  methods: {
+    sendMessage(text) {
+      if (text.length > 0) {
+        this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1;
+        this.onMessageWasSent({ author: "me", type: "text", data: { text } });
+      }
+    },
+    onMessageWasSent(message) {
+      // called when the user sends a message
+      this.messageList = [...this.messageList, message];
+      console.log(this.messageList);
+      var params = {
+        body: message.data.text
+      };
+
+      axios.post("/api/messages", params).then(response => {
+        console.log("Successfully sent message!!!");
+        console.log(response.data);
+        // post.messages.push(response.data);
+        this.message = "";
+      });
+
+      // Make a web request to your backend
+      // (send params of {body: message})
+      // axios.post("/api/messages", params).then()
+    },
+    openChat() {
+      // called when the user clicks on the fab button to open the chat
+      this.isChatOpen = true;
+      this.newMessagesCount = 0;
+    },
+    closeChat() {
+      // called when the user clicks on the botton to close the chat
+      this.isChatOpen = false;
+    }
+  }
+};
+</script>

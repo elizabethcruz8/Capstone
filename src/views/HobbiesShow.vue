@@ -10,23 +10,12 @@
       
                 <!-- SIDEBAR BOX - START -->
                 <div class="box sidebar-box widget-wrapper">
-                  <h3>Upcoming tournament</h3>
                     <div class="tournament">
                       <a href="tournament.html"><img src="/assets/images/GirlGamers.png" class="img-responsive" alt=""></a>
-                        <h4>ESL 2015</h4>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus.</p>
-                        <div class="date">21 - 29 June 2015</div>
-                        <div class="text-center"><a href="tournament.html" class="btn btn-primary">More info</a></div>
+                      <h3>Recommended for you!</h3>
+                        <p>Connect through similar hobbies. Beyond gaming online.</p>
                     </div>
                 </div>
-                <!-- SIDEBAR BOX - END -->
-                
-                <!-- SIDEBAR BOX - START -->
-                
-                <!-- SIDEBAR BOX - END -->
-                
-                <!-- SIDEBAR BOX - START -->
-                
                 <!-- SIDEBAR BOX - END -->
                 
                 <!-- SIDEBAR BOX - START -->
@@ -58,19 +47,19 @@
             <div class="col-sm-8">
                 
               <div class="box">
-                  <ul class="list-unstyled list-inline team-categories">
-                      <li><a href="#" class="btn btn-primary active">Admins</a></li>
-                        <li><a href="#" class="btn btn-primary ">Moderators</a></li>
-                        <li><a href="#" class="btn btn-primary ">Users</a></li>
-                    </ul>
+                 
                     
                   <div class="team-members-wrapper">
                         
                         <!-- TEAM MEMBER - START -->   
+                        <h2>Hobby Name</h2>
+                         <h3>{{ hobby.name }}</h3>
                         <div class="team-member" v-for="user in hobby.users" v-if="!user.is_current_user">
                             <div class="row">
-                                <div class="col-xs-3"><img src="/assets/images/member-01.jpg" class="img-responsive center-block img-circle" alt=""></div>
-                                <div class="col-xs-9">
+                                <div class="col-xs-3"> 
+                                  <img v-bind:src="user.image" class="img-responsive img-circle center-block" alt="" />
+                                </div>
+                                <div class="col-xs-9"> 
                                     <h2>GirlGamer Name:<small>{{ user.first_name }} {{ user.last_name }}</small></h2>
                                     <ul class="list-unstyled">
 
@@ -82,8 +71,8 @@
                                           <button v-on:click="destroyRelationship(user)">UnFollow</button>
                                         </div>
 
-      <div v-else>
-        <button v-on:click="createRelationship(user)">Follow</button> </div>
+                                       <div v-else>
+                                 <button v-on:click="createRelationship(user)">Follow</button> </div>
                                   
                                     <ul class="brands brands-tn brands-circle brands-colored brands-inline">
                                        <li><a href="https://www.facebook.com/pixelized.cz" target="_blank" class="brands-facebook"><i class="fa fa-facebook"></i></a></li>
@@ -102,26 +91,6 @@
             
         </div>
     </section>
-
-
-    <h1>Recommended for you!</h1>
-    <h2>Hobby Name</h2>
-    <h3>{{ hobby.name }}</h3>
-    <div v-for="user in hobby.users" v-if="!user.is_current_user">
-      <p>
-        {{ user.first_name }} {{ user.last_name }} (Am I following? {{ user.is_following }})
-
-        <router-link v-bind:to="`/users/${user.id}`">View Profile!</router-link>
-      </p>
-      <p>Relationship: {{ user.relationship }}</p>
-      <div v-if="user.is_following">
-        <button v-on:click="destroyRelationship(user)">UnFollow</button>
-      </div>
-
-      <div v-else>
-        <button v-on:click="createRelationship(user)">Follow</button>
-      </div>
-    </div>
   </div>
 </template>
 

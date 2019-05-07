@@ -1,6 +1,6 @@
 <template>
-    <!-- prettier-ignore -->
-    <div class="container">
+  <!-- prettier-ignore -->
+  <div class="container">
 
     <section class="content-wrapper">
       <div class="row">
@@ -11,121 +11,48 @@
                 <!-- SIDEBAR BOX - START -->
                 <div class="box sidebar-box widget-wrapper">
                   <h3>Hello {{ user.first_name }} {{ user.last_name }} !</h3>
-                    <div class="tournament">
-                      <a href="tournament.html"><img src="assets/images/esl.png" class="img-responsive" alt=""></a> //add profile picture here 
-                        <h4>ESL 2015</h4>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus.</p>
-                        <div class="date">21 - 29 June 2015</div>
-                        <div class="text-center"><a href="tournament.html" class="btn btn-primary">More info</a></div>
+                  <img v-bind:src="user.image" class="img-responsive">
+              </div>
+
+              <div class="box">
+
+                    <div class="row">
+                   <form v-on:submit.prevent="submit(user.id)">
+                        <h1> Upload your profile picture </h1>
+
+                        <div>
+                            Image: <input type="file" v-on:change="setFile($event)" ref="fileInput">
+                         </div>
+                         <input type="submit" value="Upload">
+                     </form>
+                 </div>
+
+                </div>
+                <!-- SIDEBAR BOX - END -->
+                
+                <!-- SIDEBAR BOX - START -->
+                <div class="box sidebar-box widget-wrapper widget-matches">
+                  <form v-on:submit.prevent="createHobbyUser()">
+                     <div>
+                 <h3>Choose a Hobby!</h3>
+                 <select v-model="hobby_id">
+                 <option value="" disabled="disabled" selected="selected"> Select Hobby:</option>
+                <option v-for="hobby in hobbies" v-bind:value="hobby.id">{{ hobby.name }}</option>
+                </select>
+                 <input type="submit" value="Create" />
                     </div>
+                 </form>
                 </div>
                 <!-- SIDEBAR BOX - END -->
                 
                 <!-- SIDEBAR BOX - START -->
                 <div class="box sidebar-box widget-wrapper widget-matches">
-                  <h3>Upcoming matches <a href="matches-list.html" class="btn btn-primary pull-right btn-sm">All matches</a></h3>
-                    
-                    <a href="/match-single.html">
-                        <table class="table match-wrapper">
-                            <tbody>
-                                <tr>
-                                    <td class="game">
-                                        <img src="/assets/icons/dota2.png" alt="">
-                                        <span>Dota 2</span>
-                                    </td>
-                                    <td class="game-date">
-                                        <span>5/10/2015 - 19:30</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="team-name"><img src="/assets/icons/cze.png" alt="">Czech Republic</td>
-                                    <td class="team-score">-</td>
-                                </tr>
-                                <tr>
-                                    <td class="team-name"><img src="/assets/icons/swe.png" alt="">Sweden</td>
-                                    <td class="team-score">-</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </a>
-                    
-                    <a href="/match-single.html">
-                        <table class="table match-wrapper">
-                            <tbody>
-                                <tr>
-                                    <td class="game">
-                                        <img src="assets/icons/csgo.jpg" alt="">
-                                        <span>CS GO</span>
-                                    </td>
-                                    <td class="game-date">
-                                        <span>22/11/2015 - 22:00</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="team-name"><img src="/assets/icons/den.png" alt="">Fnatic</td>
-                                    <td class="team-score">-</td>
-                                </tr>
-                                <tr>
-                                    <td class="team-name"><img src="/assets/icons/swe.png" alt="">Ninjas in Pyjamas</td>
-                                    <td class="team-score">-</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </a>
-                </div>
-                <!-- SIDEBAR BOX - END -->
-                
-                <!-- SIDEBAR BOX - START -->
-                <div class="box sidebar-box widget-wrapper widget-matches">
-                    <h3>Latest matches <a href="matches-list.html" class="btn btn-primary pull-right btn-sm">All matches</a></h3>
-                    
-                    <a href="match-single.html">
-                        <table class="table match-wrapper">
-                            <tbody>
-                                <tr>
-                                    <td class="game">
-                                        <img src="/assets/icons/lol.png" alt="">
-                                        <span>LoL</span>
-                                    </td>
-                                    <td class="game-date">
-                                        <span>18/02/2015 - 14:00</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="team-name"><img src="/assets/icons/usa.png" alt=""><b>Ninjas in Pyjamas</b></td>
-                                    <td class="team-score win">9</td>
-                                </tr>
-                                <tr>
-                                    <td class="team-name"><img src="/assets/icons/den.png" alt="">Natus Vincere</td>
-                                    <td class="team-score lose">5</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </a>
-                    
-                    <a href="/match-single.html">
-                        <table class="table match-wrapper">
-                            <tbody>
-                                <tr>
-                                    <td class="game">
-                                        <img src="/assets/icons/gta.png" alt="">
-                                        <span>GTA</span>
-                                    </td>
-                                    <td class="game-date">
-                                        <span>8/6/2015 - 12:00</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="team-name"><img src="/assets/icons/swe.png" alt=""><b>Ninjas in Pyjamas</b></td>
-                                    <td class="team-score win">9</td>
-                                </tr>
-                                <tr>
-                                    <td class="team-name"><img src="/assets/icons/usa.png" alt="">Natus Vincere</td>
-                                    <td class="team-score lose">5</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </a>
+                <h3>My Hobbies</h3>
+                <div v-for="hobby in user.hobbies">
+             <router-link v-bind:to="`/hobbies/${hobby.id}`">
+                   <p>{{ hobby.name }} </p> </router-link>
+                <button class="btn btn-primary" v-on:click="destroyHobby(hobby)">Destroy Hobby</button> 
+                    </div>
                 </div>
                 <!-- SIDEBAR BOX - END -->
                 
@@ -145,8 +72,18 @@
                 
                 <!-- SIDEBAR BOX - START -->
                 <div class="box sidebar-box widget-wrapper">
-                  <h3>Latest Tweets</h3>
-                    <div id="twitter-wrapper">
+                  <h3>
+                      Followers 
+                    </h3>
+                    <h4>({{ user.followers.length }} total)</h4>
+                    <div v-for="follower in user.followers">
+                        <img v-bind:src="follower.image" class="img-responsive">
+                      <h2>{{ follower.first_name }} {{ follower.last_name }}</h2>
+                      <router-link v-bind:to="`/users/${follower.id}`">View Profile!</router-link>
+                      <div v-for="post in follower.posts">
+                        <h4>{{ post.title }}</h4>
+                        <p>{{ post.text }}</p>
+                      </div>
                     </div>
                 </div>
                 <!-- SIDEBAR BOX - END -->
@@ -165,25 +102,64 @@
                     </div>
                 </div>
                 
-              <div class="box">
+                <div class="box">
+
+                    <div class="row">
+                        <h3>Create a Post!</h3>
+                    <form v-on:submit.prevent="createPost()">
+                          <ul>
+                            <li v-for="error in errors">{{ error }}</li>
+                          </ul>
+                      <div class="form-group">
+                        <label for="Title">Title</label>
+                        <input type="text" class="form-control" id="newPostTitle" aria-describedby="newPostTitle" placeholder="Enter Title">
+                      </div>
+                    <div class="form-group">
+                        <label for="Text">Text</label>
+                        <input type="text" class="form-control" id="newPostText" aria-describedby="newPostText" placeholder="Enter Text">
+                    </div>
+                    <div>
+                        <b> Photo </b>
+                        <input type="file" v-on:change="setFile($event)" ref="fileInput">
+                       </div>
+                       <input type="submit" value="Upload">
+
+                        <div>
+                      <b>  Video </b>
+                        <input type="file" v-on:change="setFile($event)" ref="fileInput">
+                       </div>
+                       <input type="submit" value="Upload">
+                       <div>
+                  <button type="submit" class="btn btn-primary">Create Post</button>
+                </div>
+                    </form>
+                    
+                    </div>
+                </div>
                 
                   <!-- POST - START -->
-                  <article class="post">
+                <div class="box">
+                  <article class="post" v-for="post in user.posts">
                       <div class="post-date-wrapper">
                           <div class="post-date">
-                              <div class="day">25</div>
-                              <div class="month">Jan 2014</div>
+                              <div class="day">24</div>
+                              <div class="month">April 2019</div>
                             </div>
                             <div class="post-type">
                               <i class="fa fa-video-camera"></i>
                             </div>
                         </div>
-                        <div class="post-body">
-                            <h2>Blog post with Vimeo video</h2>
-                            <p><img src="assets/images/image_005.jpg" class="img-responsive" alt="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci porttitor et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus. Curabitur posuere vel nisi et scelerisque. Praesent imperdiet sed enim et ornare. In congue quis enim ut gravida. Aenean non justo varius, dapibus ipsum eu, mattis urna.</p>
+                        <div class="post-body"> 
+                            <button class="btn btn-primary pull-right" v-on:click="destroyPost(post)">Destroy Post</button>
+                            <h2>{{ post.title }} </h2>
+                            <p>{{ post.text }} </p>
                             <div class="post-info">
-                                <span>Posted by: admin</span>
-                                <a href="single.html" class="btn btn-inverse">View More</a>
+                                <span>Posted by: {{user.first_name}} {{user.last_name}}</span>
+                             <h4>Comments ({{ post.comments.length }} total)</h4>
+                                <div v-for="comment in post.comments">
+                                <h5>{{ comment.user_first_name }}</h5> 
+                                <p>{{ comment.text }}</p>
+                                </div>
                             </div>
                         </div>
                     </article>
@@ -194,7 +170,7 @@
                       <div class="post-date-wrapper">
                           <div class="post-date">
                               <div class="day">25</div>
-                              <div class="month">Jan 2014</div>
+                              <div class="month">April 2019</div>
                             </div>
                             <div class="post-type">
                               <i class="fa fa-font"></i>
@@ -295,77 +271,10 @@
                     <li><a href="#">4</a></li>
                     <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
                 </ul>
-                
             </div>
             <!-- CONTENT BODY - END -->
-            
         </div>
     </section>
-
-
-
-
-    <h1>Hello {{ user.first_name }} {{ user.last_name }} !</h1>
-
-    <h1>Create a Post!</h1>
-    <form v-on:submit.prevent="createPost()">
-      <ul>
-        <li v-for="error in errors">{{ error }}</li>
-      </ul>
-      Title:
-      <input type="text" v-model="newPostTitle" />
-      Text:
-      <input type="text" v-model="newPostText" />
-      Photo:
-      <input type="text" v-model="newPostPhoto" />
-      Video:
-      <input type="text" v-model="newPostVideo" />
-      <input type="submit" value="Create" />
-    </form>
-
-    <h1>My posts</h1>
-    <div v-for="post in user.posts">
-      <h2>{{ post.title }}</h2>
-      <p>{{ post.text }}</p>
-      <button v-on:click="destroyPost(post)">Destroy Post</button>
-      <h4>Comments ({{ post.comments.length }} total)</h4>
-      <div v-for="comment in post.comments">
-        <h5>{{ comment.user_first_name }}</h5>
-        <p>{{ comment.text }}</p>
-      </div>
-    </div>
-
-    <h1>
-      Followers
-    </h1>
-    <h4>({{ user.followers.length }} total)</h4>
-    <div v-for="follower in user.followers">
-      <h2>{{ follower.first_name }} {{ follower.last_name }}</h2>
-      <router-link v-bind:to="`/users/${follower.id}`">View Profile!</router-link>
-      <div v-for="post in follower.posts">
-        <h4>{{ post.title }}</h4>
-        <p>{{ post.text }}</p>
-      </div>
-    </div>
-
-    <form v-on:submit.prevent="createHobbyUser()">
-      <div>
-        <h1>Choose a Hobby!</h1>
-        <select v-model="hobby_id">
-          <option value="" disabled="disabled" selected="selected"> Select Hobby:</option>
-          <option v-for="hobby in hobbies" v-bind:value="hobby.id">{{ hobby.name }}</option>
-        </select>
-        <input type="submit" value="Create" />
-      </div>
-    </form>
-
-    <h1>My Hobbies</h1>
-    <div v-for="hobby in user.hobbies">
-      <router-link v-bind:to="`/hobbies/${hobby.id}`">
-        <p>{{ hobby.name }}</p></router-link
-      >
-      <button v-on:click="destroyHobby(hobby)">Destroy Hobby</button>
-    </div>
   </div>
 </template>
 
@@ -373,82 +282,104 @@
 import axios from "axios";
 
 export default {
-    data: function() {
-        return {
-            relationships: [],
-            user: { followers: [] },
-            errors: [],
-            newPostTitle: "",
-            newPostText: "",
-            newPostPhoto: "",
-            newPostVideo: "",
-            hobby_id: "",
-            hobbies: [{}]
-        };
+  data: function() {
+    return {
+      relationships: [],
+      user: { followers: [] },
+      errors: [],
+      newPostTitle: "",
+      newPostText: "",
+      newPostPhoto: "",
+      newPostVideo: "",
+      hobby_id: "",
+      hobbies: [{}],
+      image: "",
+      user_id: "",
+      test: ""
+    };
+  },
+  created: function() {
+    axios.get("/api/users/current_user").then(response => {
+      console.log("created", response.data);
+      this.user = response.data;
+    });
+    axios.get("/api/hobbies?new=true").then(response => {
+      this.hobbies = response.data;
+      console.log(this.hobbies);
+    });
+  },
+  methods: {
+    setFile: function(event) {
+      if (event.target.files.length > 0) {
+        this.image = event.target.files[0];
+        this.video = event.target.files[0];
+      }
     },
-    created: function() {
-        axios.get("/api/users/current_user").then(response => {
-            console.log("created", response.data);
-            this.user = response.data;
-        });
-        axios.get("/api/hobbies?new=true").then(response => {
-            this.hobbies = response.data;
-            console.log(this.hobbies);
+
+    submit: function(user_id) {
+      var formData = new FormData();
+      formData.append("image", this.image);
+      formData.append("video", this.video);
+      formData.append("id", user_id);
+      console.log("formData: ", formData);
+      axios.patch("/api/users/" + user_id, formData).then(response => {
+        this.image = "";
+        this.video = "";
+        this.$refs.fileInput.value = "";
+      });
+    },
+    createPost: function() {
+      var params = {
+        title: this.newPostTitle,
+        text: this.newPostText,
+        photo: this.newPostPhoto,
+        video: this.newPostVideo
+      };
+      axios
+        .post("/api/posts", params)
+        .then(response => {
+          console.log("Successfully made post!!!");
+          console.log(response.data);
+          this.user.posts.push(response.data);
+          this.$router.push("/");
+        })
+        .catch(error => {
+          console.log(error.response);
+          this.errors = error.response.data.errors;
         });
     },
-    methods: {
-        createPost: function() {
-            var params = {
-                title: this.newPostTitle,
-                text: this.newPostText,
-                photo: this.newPostPhoto,
-                video: this.newPostVideo
-            };
-            axios
-                .post("/api/posts", params)
-                .then(response => {
-                    console.log("Successfully made post!!!");
-                    console.log(response.data);
-                    this.user.posts.push(response.data);
-                    this.$router.push("/");
-                })
-                .catch(error => {
-                    console.log(error.response);
-                    this.errors = error.response.data.errors;
-                });
-        },
 
-        destroyPost: function(post) {
-            axios.delete("/api/posts/" + post.id).then(response => {
-                var index = this.user.posts.indexOf(post);
-                this.user.posts.splice(index, 1);
-                this.$router.push("/");
-            });
-        },
+    destroyPost: function(post) {
+      axios.delete("/api/posts/" + post.id).then(response => {
+        var index = this.user.posts.indexOf(post);
+        this.user.posts.splice(index, 1);
+        this.$router.push("/");
+      });
+    },
 
-        createHobbyUser: function() {
-            var params = {
-                hobby_id: this.hobby_id
-            };
-            axios
-                .post("/api/hobbyusers", params)
-                .then(response => {
-                    console.log("Successfully created a hobby!");
-                    this.user.hobbies.push(response.data.hobby);
-                    this.$router.push("/");
-                })
-                .catch(error => {
-                    console.log(error.response);
-                    this.errors = error.response.data.errors;
-                });
-        },
-        destroyHobby: function(hobby) {
-            axios.delete("/api/hobbies/" + hobby.id).then(response => {
-                var index = this.user.hobbies.indexOf(hobby);
-                this.user.hobbies.splice(index, 1);
-                this.$router.push("/");
-            });
-        }
+    createHobbyUser: function() {
+      var params = {
+        hobby_id: this.hobby_id
+      };
+      axios
+        .post("/api/hobbyusers", params)
+        .then(response => {
+          console.log("Successfully created a hobby!");
+          this.user.hobbies.push(response.data.hobby);
+          this.$router.push("/");
+        })
+        .catch(error => {
+          console.log(error.response);
+          this.errors = error.response.data.errors;
+        });
+    },
+    destroyHobby: function(hobby) {
+      axios.delete("/api/hobbies/" + hobby.id).then(response => {
+        var index = this.user.hobbies.indexOf(hobby);
+        this.user.hobbies.splice(index, 1);
+        this.$router.push("/");
+      });
     }
+  }
 };
 </script>

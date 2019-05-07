@@ -7,7 +7,6 @@ import Index from "./views/Index.vue";
 import Posts from "./views/Posts.vue";
 import HobbiesShow from "./views/HobbiesShow.vue";
 import UserShow from "./views/UserShow.vue";
-import chat from "./views/chat.vue";
 import Chat from "vue-beautiful-chat";
 
 Vue.use(Chat);
@@ -58,12 +57,6 @@ export default new Router({
       path: "/users/:id",
       name: "UserShow",
       component: UserShow
-    },
-
-    {
-      path: "/chat",
-      name: "chat",
-      component: chat
     }
   ]
 });
