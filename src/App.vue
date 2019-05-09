@@ -13,62 +13,14 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gaming</a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="gaming-team.html"><i class="fa fa-plus"></i>Gaming team</a>
-                </li>
-                <li>
-                  <a href="matches-list.html"><i class="fa fa-plus"></i>List of matches</a>
-                </li>
-                <li>
-                  <a href="match-single.html"><i class="fa fa-plus"></i>Single match</a>
-                </li>
-                <li>
-                  <a href="tournament.html"><i class="fa fa-plus"></i>Tournament</a>
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forum</a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="forum.html"><i class="fa fa-plus"></i>Forum Page</a>
-                </li>
-                <li>
-                  <a href="forum-list.html"><i class="fa fa-plus"></i>Forum threads</a>
-                </li>
-                <li>
-                  <a href="forum-single.html"><i class="fa fa-plus"></i>Single forum post</a>
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages</a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="signup.html"><i class="fa fa-plus"></i>Sign up</a>
-                </li>
-                <li>
-                  <a href="signin.html"><i class="fa fa-plus"></i>Sign in</a>
-                </li>
-                <li>
-                  <a href="servers.html"><i class="fa fa-plus"></i>Servers</a>
-                </li>
-                <li>
-                  <a href="404.html"><i class="fa fa-plus"></i>Error Page</a>
-                </li>
-              </ul>
-            </li>
+            <!-- <a href="/" class="btn btn-primary">Home</a> -->
+            <!-- <li><a href="/">Home</a></li> -->
           </ul>
           <div class="pull-right navbar-buttons hidden-xs">
+            <a href="/" class="btn btn-primary">Home</a>
             <a href="/Signup" class="btn btn-primary">Sign Up</a>
-            <a href="/Login" class="btn btn-inverse">Login</a>
-            <a href="/Logout" class="btn btn-inverse">Logout</a>
+            <a href="/Login" class="btn btn-primary">Login</a>
+            <a href="/Logout" class="btn btn-primary">Logout</a>
             <a class="navbar-icon show2" id="open-search"><i class="fa fa-search"></i></a>
             <a class="navbar-icon hidden" id="close-search"><i class="fa fa-times"></i></a>
             <div class="hidden" id="navbar-search-form">
@@ -281,8 +233,8 @@
             <div class="box">
               <h4>About Us</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci
-                porttitor et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac.
+                GirlGamers is about connecting girls/women beyond online gaming. Find another GirlGamer that you share
+                common hobbies with, meet in person, and game online!
               </p>
             </div>
           </div>
@@ -473,6 +425,7 @@ export default {
         // Called when there's incoming data on the websocket for this channel
         console.log("Data from MessagesChannel:", data);
         // this.messages.unshift(data); // update the messages in real time
+        this.messageList = [...this.messageList, data];
       }
     });
   },
@@ -485,7 +438,7 @@ export default {
     },
     onMessageWasSent(message) {
       // called when the user sends a message
-      this.messageList = [...this.messageList, message];
+      // this.messageList = [...this.messageList, message];
       console.log(this.messageList);
       var params = {
         body: message.data.text

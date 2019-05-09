@@ -6,7 +6,7 @@
         <div class="col-sm-4 hidden-xs">
           <!-- SIDEBAR BOX - START -->
           <div class="box sidebar-box widget-wrapper">
-            <h2>{{ user.first_name }}'s' Hobbies</h2>
+            <h3>{{ user.first_name }}'s Hobbies</h3>
             <div class="tournament">
               <ul class="list-unstyled">
                 <div v-for="hobby in user.hobbies">
@@ -21,57 +21,21 @@
 
           <!-- SIDEBAR BOX - START -->
           <div class="box sidebar-box widget-wrapper widget-matches">
-            <h3>
-              Upcoming matches <a href="matches-list.html" class="btn btn-primary pull-right btn-sm">All matches</a>
-            </h3>
-
-            <a href="match-single.html">
-              <table class="table match-wrapper">
-                <tbody>
-                  <tr>
-                    <td class="game">
-                      <img src="assets/icons/dota2.png" alt="" />
-                      <span>Dota 2</span>
-                    </td>
-                    <td class="game-date">
-                      <span>5/10/2015 - 19:30</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="team-name"><img src="assets/icons/cze.png" alt="" />Czech Republic</td>
-                    <td class="team-score">-</td>
-                  </tr>
-                  <tr>
-                    <td class="team-name"><img src="assets/icons/swe.png" alt="" />Sweden</td>
-                    <td class="team-score">-</td>
-                  </tr>
-                </tbody>
-              </table>
-            </a>
-
-            <a href="match-single.html">
-              <table class="table match-wrapper">
-                <tbody>
-                  <tr>
-                    <td class="game">
-                      <img src="assets/icons/csgo.jpg" alt="" />
-                      <span>CS GO</span>
-                    </td>
-                    <td class="game-date">
-                      <span>22/11/2015 - 22:00</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="team-name"><img src="assets/icons/den.png" alt="" />Fnatic</td>
-                    <td class="team-score">-</td>
-                  </tr>
-                  <tr>
-                    <td class="team-name"><img src="assets/icons/swe.png" alt="" />Ninjas in Pyjamas</td>
-                    <td class="team-score">-</td>
-                  </tr>
-                </tbody>
-              </table>
-            </a>
+            <h3>{{ user.first_name }} {{ user.last_name }}'s Followers</h3>
+            <small>({{ user.followers.length }} total)</small>
+            <div v-for="follower in user.followers">
+              <h2>{{ follower.first_name }} {{ follower.last_name }}</h2>
+              <img v-bind:src="follower.image" class="img-responsive img-circle center-block" />
+              <div v-for="post in follower.posts">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.text }}</p>
+                <form v-on:submit.prevent="createComment()">
+                  Comment:
+                  <input type="text" v-model="newCommentText[index]" />
+                  <input type="submit" value="Create" />
+                </form>
+              </div>
+            </div>
           </div>
           <!-- SIDEBAR BOX - END -->
 
@@ -207,7 +171,7 @@
           </div>
 
           <div class="box hardware">
-            <h2>{{ user.first_name }}'s Posts</h2>
+            <h3>{{ user.first_name }}'s Posts</h3>
             <div class="row">
               <div class="col-md-6">
                 <div class="team-member">
@@ -220,9 +184,9 @@
                         <input type="text" v-model="newCommentText[index]" />
                         <input type="submit" value="Create" />
                       </form>
-                      <h4>Comments ({{ post.comments.length }} total)</h4>
+                      <h2>Comments ({{ post.comments.length }} total)</h2>
                       <div v-for="comment in post.comments">
-                        <h5>{{ comment.user_first_name }}: {{ comment.text }}</h5>
+                        <h3>{{ comment.user_first_name }}: {{ comment.text }}</h3>
                       </div>
                     </div>
                   </ul>
@@ -269,43 +233,26 @@
           </div>
 
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="box sidebar-box widget-wrapper">
                 <h3>Last comments by {{ user.first_name }}</h3>
 
                 <div v-for="comment in user.comments">
-                  <p>
+                  <div>
                     {{ comment.post.title }}
                     {{ comment.post.user_id }}
+                  </div>
+                  <p>
+                    <router-link v-bind:to="`/users/${comment.post.user_id}`"> {{ comment.text }} </router-link>
                   </p>
-                  <router-link v-bind:to="`/users/${comment.post.user_id}`"> {{ comment.text }} </router-link>
                 </div>
               </div>
             </div>
-
-            <div class="col-md-6">
-              <div class="box sidebar-box widget-wrapper">
-                <h3>Last forum posts</h3>
-                <ul class="nav nav-sidebar">
-                  <li>
-                    <a href="#">Lorem ipsum dolor sit<span>3/2/2015</span></a>
-                  </li>
-                  <li>
-                    <a href="#">consectetur adipiscing<span>3/2/2015</span></a>
-                  </li>
-                  <li>
-                    <a href="#">Nam auctor dictum<span>3/2/2015</span></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
           </div>
 
-          <div class="box">
-            <!-- COMMENT FORM - END -->
+          <!-- COMMENT FORM - END -->
 
-            <!-- COMMENT FORM - END -->
-          </div>
+          <!-- COMMENT FORM - END -->
         </div>
         <!-- CONTENT BODY - END -->
       </div>

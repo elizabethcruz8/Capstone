@@ -17,11 +17,11 @@
               <div class="box">
 
                     <div class="row">
-                   <form v-on:submit.prevent="submit(user.id)">
+                   <form v-on:submit.prevent="updateUser(user.id)">
                         <h1> Upload your profile picture </h1>
 
                         <div>
-                            Image: <input type="file" v-on:change="setFile($event)" ref="fileInput">
+                            Image: <input type="file" v-on:change="setImage($event)" ref="fileImageInput">
                          </div>
                          <input type="submit" value="Upload">
                      </form>
@@ -39,20 +39,24 @@
                  <option value="" disabled="disabled" selected="selected"> Select Hobby:</option>
                 <option v-for="hobby in hobbies" v-bind:value="hobby.id">{{ hobby.name }}</option>
                 </select>
-                 <input type="submit" value="Create" />
+                 <input class="btn btn-primary" type="submit" value="Create" />
                     </div>
                  </form>
                 </div>
                 <!-- SIDEBAR BOX - END -->
                 
+                
                 <!-- SIDEBAR BOX - START -->
-                <div class="box sidebar-box widget-wrapper widget-matches">
-                <h3>My Hobbies</h3>
-                <div v-for="hobby in user.hobbies">
-             <router-link v-bind:to="`/hobbies/${hobby.id}`">
-                   <p>{{ hobby.name }} </p> </router-link>
-                <button class="btn btn-primary" v-on:click="destroyHobby(hobby)">Destroy Hobby</button> 
-                    </div>
+                <div class="box sidebar-box widget-wrapper">
+                  <h3>My Hobbies</h3>
+                    <ul class="nav nav-sidebar">
+                      <li v-for="hobby in user.hobbies">
+                        <router-link v-bind:to="`/hobbies/${hobby.id}`">
+                          {{ hobby.name }}
+                          <button class="btn btn-primary pull-right" v-on:click="destroyHobby(hobby)"><i class="fa fa-trash-o"></i></button>
+                        </router-link>
+                      </li>
+                    </ul>
                 </div>
                 <!-- SIDEBAR BOX - END -->
                 
@@ -73,11 +77,11 @@
                 <!-- SIDEBAR BOX - START -->
                 <div class="box sidebar-box widget-wrapper">
                   <h3>
-                      Followers 
+                    Followers 
                     </h3>
-                    <h4>({{ user.followers.length }} total)</h4>
+                    <small>({{ user.followers.length }} total)</small>
                     <div v-for="follower in user.followers">
-                        <img v-bind:src="follower.image" class="img-responsive">
+                        <img v-bind:src="follower.image" class="img-responsive img-circle center-block" style="width: 80%;">
                       <h2>{{ follower.first_name }} {{ follower.last_name }}</h2>
                       <router-link v-bind:to="`/users/${follower.id}`">View Profile!</router-link>
                       <div v-for="post in follower.posts">
@@ -101,42 +105,44 @@
                         <div class="col-xs-4"><a href="#"><img src="/assets/images/partner_3.png" class="img-responsive center-block" alt=""></a></div>
                     </div>
                 </div>
-                
-                <div class="box">
 
-                    <div class="row">
-                        <h3>Create a Post!</h3>
+
+
+
+
+
+                
+                <div class="box registration-form">
+
+                        <h2>Create a Post!</h2>
                     <form v-on:submit.prevent="createPost()">
                           <ul>
                             <li v-for="error in errors">{{ error }}</li>
                           </ul>
                       <div class="form-group">
                         <label for="Title">Title</label>
-                        <input type="text" class="form-control" id="newPostTitle" aria-describedby="newPostTitle" placeholder="Enter Title">
+                        <input type="text" v-model="newPostTitle" class="form-control" id="newPostTitle" aria-describedby="newPostTitle" placeholder="Enter Title">
                       </div>
                     <div class="form-group">
                         <label for="Text">Text</label>
-                        <input type="text" class="form-control" id="newPostText" aria-describedby="newPostText" placeholder="Enter Text">
+                        <input type="text" v-model="newPostText" class="form-control" id="newPostText" aria-describedby="newPostText" placeholder="Enter Text">
                     </div>
-                    <div>
+                    <div class="form-group">
                         <b> Photo </b>
-                        <input type="file" v-on:change="setFile($event)" ref="fileInput">
+                        <input type="file" class="form-control" v-on:change="setPostPhoto($event)" ref="filePostPhotoInput">
                        </div>
-                       <input type="submit" value="Upload">
 
-                        <div>
+                        <div class="form-group">
                       <b>  Video </b>
-                        <input type="file" v-on:change="setFile($event)" ref="fileInput">
+                        <input type="file" class="form-control" v-on:change="setPostVideo($event)" ref="filePostVideoInput">
                        </div>
-                       <input type="submit" value="Upload">
                        <div>
-                  <button type="submit" class="btn btn-primary">Create Post</button>
+                  <button type="submit" class="btn btn-primary">Create Post!!!</button>
                 </div>
                     </form>
                     
-                    </div>
                 </div>
-                
+          
                   <!-- POST - START -->
                 <div class="box">
                   <article class="post" v-for="post in user.posts">
@@ -152,6 +158,7 @@
                         <div class="post-body"> 
                             <button class="btn btn-primary pull-right" v-on:click="destroyPost(post)">Destroy Post</button>
                             <h2>{{ post.title }} </h2>
+                            <img v-bind:src="post.photo">
                             <p>{{ post.text }} </p>
                             <div class="post-info">
                                 <span>Posted by: {{user.first_name}} {{user.last_name}}</span>
@@ -180,7 +187,7 @@
                             <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci porttitor et.</h2>
                             <div class="flex-video widescreen"><iframe src="https://player.vimeo.com/video/48443133"></iframe></div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci porttitor et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus. Curabitur posuere vel nisi et scelerisque. Praesent imperdiet sed enim et ornare. In congue quis enim ut gravida. Aenean non justo varius, dapibus ipsum eu, mattis urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci porttitor et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus. Curabitur posuere vel nisi et scelerisque. Praesent imperdiet sed enim et ornare. In congue quis enim ut gravida. Aenean non justo varius, dapibus ipsum eu, mattis urna.</p>
                             <div class="post-info">
-                                <span>Posted by: admin</span>
+                                <span>Posted by: {{user.first_name}}</span>
                                 <a href="single.html" class="btn btn-inverse">View More</a>
                             </div>
                         </div>
@@ -207,7 +214,7 @@
                             </div>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor dictum nibh, ac gravida orci porttitor et. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam posuere magna a dapibus luctus. Curabitur posuere vel nisi et scelerisque. Praesent imperdiet sed enim et ornare. In congue quis enim ut gravida. Aenean non justo varius, dapibus ipsum eu, mattis urna.</p>
                             <div class="post-info">
-                                <span>Posted by: admin</span>
+                                <span>Posted by: {{user.first_name}}</span>
                                 <a href="single.html" class="btn btn-inverse">View More</a>
                             </div>
                         </div>
@@ -309,39 +316,50 @@ export default {
     });
   },
   methods: {
-    setFile: function(event) {
+    setImage: function(event) {
       if (event.target.files.length > 0) {
         this.image = event.target.files[0];
-        this.video = event.target.files[0];
       }
     },
-
-    submit: function(user_id) {
+    setPostPhoto: function(event) {
+      if (event.target.files.length > 0) {
+        this.newPostPhoto = event.target.files[0];
+      }
+    },
+    setPostVideo: function(event) {
+      if (event.target.files.length > 0) {
+        this.newPostVideo = event.target.files[0];
+      }
+    },
+    updateUser: function(user_id) {
       var formData = new FormData();
       formData.append("image", this.image);
-      formData.append("video", this.video);
-      formData.append("id", user_id);
+      // formData.append("video", this.video);
+      // formData.append("id", user_id);
       console.log("formData: ", formData);
       axios.patch("/api/users/" + user_id, formData).then(response => {
         this.image = "";
-        this.video = "";
-        this.$refs.fileInput.value = "";
+        // this.video = "";
+        this.$refs.fileImageInput.value = "";
+        this.user.image = response.data.image;
       });
     },
     createPost: function() {
-      var params = {
-        title: this.newPostTitle,
-        text: this.newPostText,
-        photo: this.newPostPhoto,
-        video: this.newPostVideo
-      };
+      var formData = new FormData();
+      formData.append("title", this.newPostTitle);
+      formData.append("text", this.newPostText);
+      formData.append("photo", this.newPostPhoto);
+      formData.append("video", this.newPostVideo);
       axios
-        .post("/api/posts", params)
+        .post("/api/posts", formData)
         .then(response => {
           console.log("Successfully made post!!!");
           console.log(response.data);
-          this.user.posts.push(response.data);
-          this.$router.push("/");
+          this.$refs.filePostPhotoInput.value = "";
+          this.$refs.filePostVideoInput.value = "";
+          this.newPostTitle = "";
+          this.newPostText = "";
+          this.user.posts.unshift(response.data);
         })
         .catch(error => {
           console.log(error.response);
@@ -374,7 +392,7 @@ export default {
         });
     },
     destroyHobby: function(hobby) {
-      axios.delete("/api/hobbies/" + hobby.id).then(response => {
+      axios.delete("/api/hobbyusers/" + hobby.hobbyuser_id).then(response => {
         var index = this.user.hobbies.indexOf(hobby);
         this.user.hobbies.splice(index, 1);
         this.$router.push("/");
