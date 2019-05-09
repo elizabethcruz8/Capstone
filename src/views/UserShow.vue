@@ -21,20 +21,19 @@
 
           <!-- SIDEBAR BOX - START -->
           <div class="box sidebar-box widget-wrapper widget-matches">
-            <h3>{{ user.first_name }} {{ user.last_name }}'s Followers</h3>
-            <small>({{ user.followers.length }} total)</small>
+            <div class="col-md-5">
+              <h3>{{ user.first_name }}{{ user.last_name }}'s Followers</h3>
+            </div>
+            <div class="col-md-6" style="margin-left: 20px;">
+              <small>({{ user.followers.length }} total)</small>
+            </div>
             <div v-for="follower in user.followers">
-              <h2>{{ follower.first_name }} {{ follower.last_name }}</h2>
-              <img v-bind:src="follower.image" class="img-responsive img-circle center-block" />
-              <div v-for="post in follower.posts">
-                <h3>{{ post.title }}</h3>
-                <p>{{ post.text }}</p>
-                <form v-on:submit.prevent="createComment()">
-                  Comment:
-                  <input type="text" v-model="newCommentText[index]" />
-                  <input type="submit" value="Create" />
-                </form>
-              </div>
+              <center>
+                <img v-bind:src="follower.image" class="img-responsive img-circle center-block" />
+                <h2>{{ follower.first_name }} {{ follower.last_name }}</h2>
+                <h2>{{ follower.Gamer_Tag }}</h2>
+                <router-link v-bind:to="`/users/${follower.id}`">View Profile!</router-link>
+              </center>
             </div>
           </div>
           <!-- SIDEBAR BOX - END -->
@@ -173,22 +172,41 @@
           <div class="box hardware">
             <h3>{{ user.first_name }}'s Posts</h3>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="team-member">
                   <ul class="list-unstyled">
-                    <div v-for="(post, index) in user.posts">
-                      <h2>{{ post.title }}</h2>
-                      <p>{{ post.text }}</p>
-                      <form v-on:submit.prevent="createComment(post, index)">
-                        Comment:
-                        <input type="text" v-model="newCommentText[index]" />
-                        <input type="submit" value="Create" />
-                      </form>
-                      <h2>Comments ({{ post.comments.length }} total)</h2>
-                      <div v-for="comment in post.comments">
-                        <h3>{{ comment.user_first_name }}: {{ comment.text }}</h3>
+                    <article class="post" v-for="(post, index) in user.posts">
+                      <div class="post-date-wrapper">
+                        <div class="post-date">
+                          <div class="day">25</div>
+                          <div class="month">April 2019</div>
+                        </div>
+                        <div class="post-type">
+                          <i class="fa fa-font"></i>
+                        </div>
                       </div>
-                    </div>
+                      <div class="post-body">
+                        <h2>{{ post.title }}</h2>
+                        <p>{{ post.text }}</p>
+                        <a href="single.html" class="btn btn-inverse">View More</a>
+
+                        <div class="post-info">
+                          <span>Posted by: {{ user.first_name }} {{ user.last_name }}</span>
+
+                          <br />
+                          <b>
+                            <p>Comments ({{ post.comments.length }} total)</p>
+                          </b>
+                          <div v-for="comment in post.comments">
+                            <h5>
+                              <b>{{ comment.user_first_name }} </b>
+                            </h5>
+
+                            <p>{{ comment.text }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
                   </ul>
                 </div>
               </div>

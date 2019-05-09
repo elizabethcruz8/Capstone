@@ -6,16 +6,13 @@
     <header class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="index.html" class="navbar-brand visible-xs">GamerGirls</a>
+          <a href="index.html" class="navbar-brand visible-xs">GirlGamers</a>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <!-- <a href="/" class="btn btn-primary">Home</a> -->
-            <!-- <li><a href="/">Home</a></li> -->
-          </ul>
+          <ul class="nav navbar-nav"></ul>
           <div class="pull-right navbar-buttons hidden-xs">
             <a href="/" class="btn btn-primary">Home</a>
             <a href="/Signup" class="btn btn-primary">Sign Up</a>
@@ -59,7 +56,7 @@
       <div class="header-title">
         <div class="pull-left">
           <h2>
-            <a href="/"><span class="text-primary">Girl</span>gamers</a>
+            <a href="/"><span class="text-primary">Girl</span>Gamers</a>
           </h2>
         </div>
       </div>
@@ -424,6 +421,10 @@ export default {
       received: data => {
         // Called when there's incoming data on the websocket for this channel
         console.log("Data from MessagesChannel:", data);
+        var userId = localStorage.getItem("user_id");
+        if (userId == data.author) {
+          data.author = "me";
+        }
         // this.messages.unshift(data); // update the messages in real time
         this.messageList = [...this.messageList, data];
       }
